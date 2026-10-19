@@ -1,5 +1,6 @@
 # Expert System (Sistem Pakar)
 
+
 ## 1. Pengertian Expert System
 
 Expert System atau sistem pakar adalah sistem komputer yang dirancang untuk meniru kemampuan seorang ahli dalam menganalisis masalah dan mengambil keputusan berdasarkan pengetahuan serta aturan tertentu. Sistem ini merupakan salah satu penerapan kecerdasan buatan (*Artificial Intelligence* atau AI) yang dapat membantu pengguna menyelesaikan masalah dalam bidang kesehatan, pendidikan, pertanian, dan teknologi komputer.
