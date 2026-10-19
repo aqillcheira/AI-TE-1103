@@ -1,1 +1,19 @@
-
+Materi Multi-Agent System (MAS)
+1. Pengertian Multi-Agent System
+Multi-Agent System (MAS) adalah sistem yang terdiri dari beberapa agen yang bekerja secara mandiri dan berinteraksi satu sama lain untuk mencapai tujuan tertentu. Setiap agen memiliki tugas dan tanggung jawab yang berbeda, tetapi dapat bekerja sama untuk menyelesaikan suatu masalah. MAS banyak digunakan dalam bidang kecerdasan buatan (Artificial Intelligence), robotika, dan otomatisasi.
+2. Komponen Multi-Agent System
+Komponen utama Multi-Agent System terdiri dari agen, komunikasi, lingkungan, dan koordinasi. Agen merupakan entitas yang menjalankan tugas tertentu secara mandiri. Komunikasi digunakan untuk bertukar informasi antaragen, sedangkan lingkungan merupakan tempat agen bekerja dan memperoleh informasi. Koordinasi berfungsi mengatur pembagian tugas agar setiap agen dapat bekerja secara efektif untuk mencapai tujuan bersama.
+3. Cara Kerja Multi-Agent System
+Multi-Agent System bekerja dengan membagi suatu permasalahan menjadi beberapa tugas yang ditangani oleh agen berbeda. Setiap agen menerima informasi, memproses data sesuai tugasnya, dan bertukar informasi dengan agen lain jika diperlukan. Hasil dari setiap agen kemudian digunakan untuk menghasilkan keputusan atau menyelesaikan masalah secara keseluruhan. Proses ini dapat berlangsung secara berurutan maupun bersamaan, tergantung pada rancangan sistem.
+4. Jenis-Jenis Multi-Agent System
+Multi-Agent System memiliki beberapa jenis, yaitu Cooperative MAS, Competitive MAS, Hybrid MAS, dan Hierarchical MAS. Cooperative MAS merupakan sistem yang agennya bekerja sama untuk mencapai tujuan bersama. Competitive MAS melibatkan agen yang memiliki tujuan berbeda atau saling bersaing. Hybrid MAS menggabungkan kerja sama dan persaingan, sedangkan Hierarchical MAS mengatur agen berdasarkan tingkatan atau pembagian wewenang.
+5. Kelebihan Multi-Agent System
+Kelebihan Multi-Agent System adalah mampu membagi tugas ke beberapa agen sehingga pekerjaan dapat dilakukan secara lebih terstruktur. Sistem ini juga fleksibel, dapat menangani permasalahan kompleks, dan memungkinkan beberapa tugas dikerjakan secara bersamaan. Selain itu, setiap agen dapat dikembangkan atau diperbarui sesuai kebutuhan tanpa harus mengubah seluruh sistem.
+6. Kekurangan Multi-Agent System
+Kekurangan Multi-Agent System adalah proses komunikasi dan koordinasi antaragen dapat menjadi rumit, terutama ketika jumlah agen semakin banyak. Sistem ini juga membutuhkan sumber daya komputasi tambahan dan perancangan yang baik. Selain itu, kesalahan informasi atau konflik keputusan antaragen dapat memengaruhi hasil akhir sistem.
+7. Contoh Penerapan Multi-Agent System
+Multi-Agent System dapat diterapkan dalam berbagai bidang, seperti robotika, transportasi, pertanian pintar, dan kecerdasan buatan. Contohnya, dalam sistem robot gudang, beberapa robot bekerja sama untuk memindahkan barang. Dalam manajemen lalu lintas, agen dapat mengatur lampu lalu lintas berdasarkan kepadatan kendaraan. Pada pertanian pintar, agen dapat memantau kelembapan tanah dan membantu mengatur penyiraman tanaman secara otomatis.
+8. Implementasi Multi-Agent System Menggunakan Python
+Multi-Agent System dapat dibuat menggunakan Python dengan membagi program menjadi beberapa agen yang memiliki fungsi berbeda. Contohnya adalah sistem penentuan kelulusan mahasiswa yang terdiri dari tiga agen, yaitu Data Agent untuk mengumpulkan nilai, Analysis Agent untuk menghitung rata-rata nilai, dan Decision Agent untuk menentukan status kelulusan. Ketiga agen tersebut bekerja secara terhubung untuk menghasilkan keputusan akhir berdasarkan data yang tersedia.
+9. Kesimpulan
+Multi-Agent System merupakan pendekatan komputasi yang memanfaatkan beberapa agen untuk bekerja secara mandiri maupun bersama-sama dalam menyelesaikan suatu masalah. Setiap agen memiliki peran tertentu yang saling mendukung melalui komunikasi dan koordinasi. Dengan kemampuan membagi tugas dan menangani masalah kompleks, Multi-Agent System menjadi salah satu pendekatan yang penting dalam pengembangan kecerdasan buatan dan sistem otomatisasi modern.
