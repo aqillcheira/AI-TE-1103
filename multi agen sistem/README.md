@@ -1,34 +1,34 @@
 ## 🤖 Multi-Agent System (MAS) Architecture & Visualization
 
-Meskipun implementasi kode di atas berjalan dalam struktur *loop* prosedural tunggal, pendekatan konseptualnya dapat dipetakan dan diskalakan ke dalam arsitektur **Multi-Agent System (MAS)**. Dalam paradigma MAS, sistem dibagi menjadi beberapa entitas otonom (*agen*) yang memiliki tugas spesifik dan saling berkoordinasi untuk mencapai tujuan bersama: menjaga tingkat kelembapan tanah secara optimal.
+Dalam implementasi berbasis skrip berorientasi objek ini, sistem irigasi dipecah ke dalam arsitektur **Multi-Agent System (MAS)**. Alih-alih menjalankan seluruh proses dalam satu fungsi tunggal, tugas sistem dibagi ke dalam entitas otonom (*agen*) yang memiliki peran spesifik dan dikoordinasikan secara terpusat oleh agen pengawas (*supervisor*).
 
 ---
 
 ### 1. Pengertian Visualisasi Multi-Agent System
-Visualisasi MAS menggambarkan bagaimana proses kontrol irigasi didelegasikan ke dalam klaster agen mandiri yang berinteraksi dalam satu lingkungan terdistribusi. Setiap agen dalam sistem ini bertindak sebagai modul yang independen namun saling mengirimkan data:
-* **Sensor Agent:** Bertanggung jawab membaca kondisi lingkungan (kelembapan tanah).
-* **Fuzzy Logic Agent (Pakar):** Berperan sebagai agen pemikir yang memproses data dan mengambil keputusan (*decision-making*).
-* **Actuator Agent:** Bertindak sebagai eksekutor fisik (mengontrol pompa air/relay).
-* **Supervisor/Coordinator Agent:** Mengatur sinkronisasi alur kerja dan penjadwalan siklus antar-agen.
+Visualisasi Multi-Agent System menggambarkan bagaimana sekumpulan modul independen yang memiliki kecerdasan dan tugas masing-masing saling berkomunikasi dan bertukar data untuk menyelesaikan masalah yang kompleks. 
+
+Berdasarkan struktur kode di atas, sistem ini dibagi menjadi 4 kelas agen utama:
+1. **Sensor Agent (`SensorAgent`):** Berperan sebagai agen pemantau lingkungan yang bertugas membaca data input mentah dari sensor kelembapan tanah (ADC) dan mengubahnya menjadi nilai persentase bermakna.
+2. **Fuzzy Logic Agent (`FuzzyLogicAgent`):** Berperan sebagai agen pakar (*expert/reasoning agent*) yang memproses tingkat kelembapan menggunakan fungsi keanggotaan Sugeno orde nol untuk menghasilkan keputusan kendali.
+3. **Actuator Agent (`ActuatorAgent`):** Berperan sebagai agen eksekutor fisik yang menerjemahkan hasil keputusan pakar menjadi tindakan nyata pada perangkat keras (menyalakan/mematikan pompa dan mengatur waktu peresapan air).
+4. **Supervisor Agent (`IrrigationSupervisorAgent`):** Berperan sebagai agen koordinator pusat yang mengatur ritme komunikasi, urutan eksekusi siklus (*run cycle*), dan jeda waktu sampling antar-agen.
 
 ---
 
 ### 2. Cara Kerja & Alur Komunikasi Antar-Agent
 
-Ilustrasi visualisasi komunikasi dan pertukaran pesan antar-agen dalam siklus eksekusi program:
+Ilustrasi visualisasi alur pertukaran pesan dan data dalam satu siklus eksekusi sistem multi-agen:
 
 ```text
- ┌──────────────────────┐
- │    Sensor Agent      │ ──(Mengirim Data Mentah / ADC: 650)──┐
- └──────────────────────┘                                       │
-                                                                ▼
- ┌──────────────────────┐                             ┌───────────────────┐
- │     Actuator Agent   │ ◄──(Menerima Keputusan Aksi)─ │ Coordinator Agent │
- └──────────────────────┘                             └───────────────────┘
-            ▲                                                   │
-            │ (Memerintahkan Pompa ON/OFF & Soaking)            │
-            │                                                   ▼
-                                                      ┌───────────────────┐
-                                                      │ Fuzzy Logic Agent │
-                                                      │  (Pakar Evaluasi) │
-                                                      └───────────────────┘
+ ┌─────────────────────────────────────────────────────────────┐
+ │                IrrigationSupervisorAgent                    │
+ │               (Pengatur Siklus & Koordinasi)                │
+ └──────┬──────────────────────┬───────────────────────┬───────┘
+        │                      │                       │
+        │ 1. Minta Data        │ 2. Evaluasi Nilai     │ 3. Eksekusi Aksi
+        ▼                      ▼                       ▼
+ ┌──────────────┐       ┌──────────────┐        ┌──────────────┐
+ │ SensorAgent  │       │ FuzzyAgent   │        │ ActuatorAgent│
+ │ (Baca ADC &  │──────►│ (Hitung      │───────►│ (Kontrol     │
+ │  Konversi)   │ Data  │  Sugeno)     │ Output │  Pompa/Relay)│
+ └──────────────┘       └──────────────┘        └──────────────┘
