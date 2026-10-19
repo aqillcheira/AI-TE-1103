@@ -1,5 +1,5 @@
 
-# Expert System: Deteksi Masalah Komputer
+
 
 def sistem_pakar():
     print("=== SISTEM PAKAR DETEKSI MASALAH KOMPUTER ===")
