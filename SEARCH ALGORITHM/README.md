@@ -1,34 +1,37 @@
-penjelasan tentang search algorithm
-# Search Algorithm
+## 🔍 Search & Optimization Algorithm (Fuzzy Logic Evaluation)
 
-## 1. Pengertian
-Search Algorithm adalah algoritma yang digunakan untuk mencari data tertentu di dalam sekumpulan data berdasarkan nilai atau kriteria yang ditentukan. Algoritma ini membantu menemukan data yang dibutuhkan secara lebih efektif dan efisien.
+Meskipun sistem ini beroperasi menggunakan logika fuzzy (bukan algoritma pencarian jalur graf seperti *A\** atau *Dijkstra*), dalam konteks kecerdasan buatan (*Artificial Intelligence*), fungsi kendali fuzzy dalam skrip ini bertindak sebagai **State Evaluation & Space Search Algorithm** (Algoritma Pencarian dan Evaluasi Ruang Keadaan) untuk mencari titik keputusan optimal dari rentang nilai input sensor.
 
-## 2. Jenis-Jenis Search Algorithm
+---
 
-### A. Linear Search
-Linear Search adalah metode pencarian yang memeriksa setiap elemen data secara berurutan, mulai dari elemen pertama hingga data yang dicari ditemukan atau seluruh data telah diperiksa.
+### 1. Pengertian Visualisasi Algoritma Pencarian
+Visualisasi algoritma pencarian dalam sistem ini menggambarkan bagaimana program **"menelusuri" ruang kemungkinan (*search space*)** dari tingkat kelembapan tanah ($0\%$ hingga $100\%$) untuk menentukan aksi kontrol pompa yang paling presisi. 
 
-- **Kelebihan:** Sederhana dan dapat digunakan pada data yang belum terurut.
-- **Kekurangan:** Membutuhkan waktu lebih lama jika jumlah data besar.
-- **Kompleksitas waktu:** \(O(n)\).
+Alih-alih mencari rute fisik, algoritma ini melakukan pencarian nilai dalam fungsi keanggotaan (*Membership Functions*) untuk mengevaluasi tiga kondisi utama:
+1. **Kering** (`fuzzy_dry`)
+2. **Lembap** (`fuzzy_moist`)
+3. **Basah** (`fuzzy_wet`)
 
-### B. Binary Search
-Binary Search adalah metode pencarian yang membagi ruang pencarian menjadi dua bagian secara berulang. Algoritma ini membandingkan nilai yang dicari dengan elemen tengah, kemudian melanjutkan pencarian pada bagian yang sesuai.
+---
 
-- **Kelebihan:** Lebih cepat untuk mencari data dalam jumlah besar.
-- **Kekurangan:** Data harus dalam keadaan terurut.
-- **Kompleksitas waktu:** \(O(\log n)\).
+### 2. Cara Kerja Algoritma (Alur Pencarian Nilai)
 
-## 3. Perbedaan Linear Search dan Binary Search
+Ilustrasi alur pencarian dan evaluasi keputusan dalam skrip:
 
-| Aspek | Linear Search | Binary Search |
-|---|---|---|
-| Metode | Memeriksa satu per satu | Membagi pencarian menjadi dua |
-| Data terurut | Tidak wajib | Wajib |
-| Kompleksitas waktu | \(O(n)\) | \(O(\log n)\) |
-| Penggunaan | Data sederhana atau belum terurut | Data terurut |
-
-## 4. Kesimpulan
-Search Algorithm merupakan bagian penting dalam pemrograman untuk menemukan data yang dibutuhkan. Linear Search cocok digunakan untuk data sederhana atau belum terurut, sedangkan Binary Search lebih efisien untuk data yang sudah terurut dan berjumlah besar.
-
+```text
+ [ Input Sensor (ADC: 650) ] 
+            │
+            ▼
+   Konversi ke Persentase (Moisture: 37.5%)
+            │
+            ├──────► Evaluasi fuzzy_dry(37.5%)   ──► Bobot Kering  = 0.625
+            ├──────► Evaluasi fuzzy_moist(37.5%)  ──► Bobot Lembap = 0.300
+            └──────► Evaluasi fuzzy_wet(37.5%)    ──► Bobot Basah  = 0.000
+            │
+            ▼
+   [ Proses Inferensi Sugeno Orde Nol ]
+   Output = (Dry*100 + Moist*45 + Wet*0) / Total Bobot
+            │
+            ▼
+   [ Keputusan Akhir: Output Fuzzy = 75.8% ] ──► Durasi Pompa ON# AI-TE-1103
+Tugas Matkul Kecerdasan Buatan
